@@ -1,0 +1,26 @@
+{
+  "name": "code-central",
+  "version": "0.1.0",
+  "description": "A federal source code inventory tracker",
+  "main": "app.js",
+  "scripts": {
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then node app.js; else nodemon app.js; fi",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSA/code-central.git"
+  },
+  "author": "Jeff Fredrickson <jeffrey.fredrickson@gsa.gov>",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/GSA/code-central/issues"
+  },
+  "homepage": "https://github.com/GSA/code-central#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
