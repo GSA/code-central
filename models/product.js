@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     laborHours: DataTypes.INTEGER
   })
   Product.associate = (models) => {
-    // associations can be defined here
+    Product.hasMany(models.Tag, {
+      foreignKey: 'productId',
+      as: 'tags'
+    })
   }
   return Product
 }

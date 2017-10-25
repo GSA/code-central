@@ -1,10 +1,13 @@
 const Product = require('../models').Product
+const Tag = require('../models').Tag
 
 module.exports = {
 
   index: (req, res) => {
     Product
-      .findAll()
+      .findAll({
+        include: [{ model: Tag, as: 'tags' }]
+      })
       .then(products => {
         return res.status(200).send(products)
       })
@@ -13,7 +16,9 @@ module.exports = {
 
   show: (req, res) => {
     Product
-      .findById(req.params.id)
+      .findById(req.params.id, {
+        include: [{ model: Tag, as: 'tags' }]
+      })
       .then(product => {
         if (!product)
           return res.status(404).send({ message: "Product not found" })
