@@ -1,5 +1,8 @@
 module.exports = {
   env: 'production',
   port: process.env.PORT,
-  databaseUrl: process.env.DATABASE_URL
+  db: {
+    dialect: 'postgres',
+    uri: process.env.DATABASE_URL
+  }
 }

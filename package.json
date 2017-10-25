@@ -2,11 +2,10 @@
   "name": "code-central",
   "version": "0.1.0",
   "description": "A federal source code inventory tracker",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then node app.js; else nodemon app.js; fi",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "knex migrate:latest"
+    "start": "if [ \"$NODE_ENV\" = \"production\" ]; then node server.js; else nodemon server.js; fi",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,12 +19,13 @@
   "homepage": "https://github.com/GSA/code-central#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "bookshelf": "^0.10.4",
     "express": "^4.16.2",
-    "knex": "^0.13.0",
-    "pg": "^7.3.0"
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.17.2"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "sequelize-cli": "^3.0.0"
   }
 }

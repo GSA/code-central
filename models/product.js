@@ -1,7 +1,15 @@
-const bookshelf = require('../bookshelf')
-
-const Product = bookshelf.Model.extend({
-  tableName: 'products'
-})
-
-module.exports = Product
+module.exports = (sequelize, DataTypes) => {
+  var Product = sequelize.define('Product', {
+    name: DataTypes.STRING,
+    repository: DataTypes.STRING,
+    description: DataTypes.STRING,
+    laborHours: DataTypes.INTEGER
+  }, {
+    classMethods: {
+      associate: function(models) {
+        // associations can be defined here
+      }
+    }
+  })
+  return Product
+}
