@@ -1,12 +1,16 @@
 const Product = require('../models').Product
 const Tag = require('../models').Tag
+const License = require('../models').License
 
 module.exports = {
 
   index: (req, res) => {
     Product
       .findAll({
-        include: [{ model: Tag, as: 'tags' }]
+        include: [
+          { model: Tag, as: 'tags' },
+          { model: License, as: 'licenses' }
+        ]
       })
       .then(products => {
         return res.status(200).send(products)
@@ -17,7 +21,10 @@ module.exports = {
   show: (req, res) => {
     Product
       .findById(req.params.id, {
-        include: [{ model: Tag, as: 'tags' }]
+        include: [
+          { model: Tag, as: 'tags' },
+          { model: License, as: 'licenses' }
+        ]
       })
       .then(product => {
         if (!product)
@@ -38,9 +45,13 @@ module.exports = {
         repository: req.body.repository,
         description: req.body.description,
         laborHours: req.body.laborHours,
-        tags: tagObjects
+        tags: tagObjects,
+        licenses: req.body.licenses
       }, {
-        include: [{ model: Tag, as: 'tags' }]
+        include: [
+          { model: Tag, as: 'tags' },
+          { model: License, as: 'licenses' }
+        ]
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(500).send("Server error"))
@@ -49,7 +60,10 @@ module.exports = {
   update: (req, res) => {
     Product
       .findById(req.params.id, {
-        include: [{ model: Tag, as: 'tags' }]
+        include: [
+          { model: Tag, as: 'tags' },
+          { model: License, as: 'licenses' }
+        ]
       })
       .then(product => {
         if (!product)
