@@ -32,17 +32,21 @@ module.exports = {
       .catch(error => res.status(500).send("Server error"))
   },
 
-  update: (req, res) => {
+  replace: (req, res) => {
     Tag
-      .findById(req.params.id)
-      .then(tag => {
-        if (!tag)
-          return res.status(404).send({ message: "Tag not found" })
-        tag
-          .update({
-            name: req.body.name || tag.name
-          })
-          .then(() => res.status(200).send(tag))
+      .destroy({ where: { productId: req.params.productId } })
+      .then(() => {
+        const tagList = req.body.tags || []
+        const tagObjects = tagList.map(tagName => {
+          return {
+            productId: req.params.productId,
+            name: tagName
+          }
+        })
+        Tag
+          .bulkCreate(tagObjects)
+          .then(() => Tag.findAll({ where: { productId: req.params.productId } }))
+          .then((tags) => res.status(200).send(tags))
           .catch(error => res.status(500).send("Server error"))
       })
       .catch(error => res.status(500).send("Server error"))

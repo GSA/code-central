@@ -17,7 +17,7 @@ router.delete('/products/:id', productController.destroy)
 router.get('/products/:productId/tags', tagController.index)
 router.get('/products/:productId/tags/:id', tagController.show)
 router.post('/products/:productId/tags', tagController.create)
-router.put('/products/:productId/tags/:id', tagController.update)
+router.put('/products/:productId/tags', tagController.replace)
 router.delete('/products/:productId/tags/:id', tagController.destroy)
 
 app.use(bodyParser.json())
