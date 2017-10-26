@@ -48,7 +48,9 @@ module.exports = {
 
   update: (req, res) => {
     Product
-      .findById(req.params.id)
+      .findById(req.params.id, {
+        include: [{ model: Tag, as: 'tags' }]
+      })
       .then(product => {
         if (!product)
           return res.status(404).send({ message: "Product not found" })
