@@ -1,6 +1,7 @@
 const Product = require('../models').Product
 const Tag = require('../models').Tag
 const License = require('../models').License
+const Usage = require('../models').Usage
 
 module.exports = {
 
@@ -9,7 +10,8 @@ module.exports = {
       .findAll({
         include: [
           { model: Tag, as: 'tags' },
-          { model: License, as: 'licenses' }
+          { model: License, as: 'licenses' },
+          { model: Usage, as: 'usage' }
         ]
       })
       .then(products => {
@@ -23,7 +25,8 @@ module.exports = {
       .findById(req.params.id, {
         include: [
           { model: Tag, as: 'tags' },
-          { model: License, as: 'licenses' }
+          { model: License, as: 'licenses' },
+          { model: Usage, as: 'usage' }
         ]
       })
       .then(product => {
@@ -46,7 +49,8 @@ module.exports = {
         description: req.body.description,
         laborHours: req.body.laborHours,
         tags: tagObjects,
-        licenses: req.body.licenses
+        licenses: req.body.licenses,
+        usageKey: req.body.usageKey
       }, {
         include: [
           { model: Tag, as: 'tags' },
@@ -62,7 +66,8 @@ module.exports = {
       .findById(req.params.id, {
         include: [
           { model: Tag, as: 'tags' },
-          { model: License, as: 'licenses' }
+          { model: License, as: 'licenses' },
+          { model: Usage, as: 'usage' }
         ]
       })
       .then(product => {
@@ -73,7 +78,8 @@ module.exports = {
             name: req.body.name || product.name,
             repository: req.body.repository || product.repository,
             description: req.body.description || product.description,
-            laborHours: req.body.laborHours || product.laborHours
+            laborHours: req.body.laborHours || product.laborHours,
+            usageKey: req.body.usageKey || product.usageKey
           })
           .then(() => res.status(200).send(product))
           .catch(error => res.status(500).send("Server error"))

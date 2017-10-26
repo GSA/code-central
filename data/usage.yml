@@ -1,0 +1,38 @@
+# Seed data for Usages
+# Based on usage types defined in the Code.gov metadata schema
+# https://code.gov/#/policy-guide/docs/compliance/inventory-code
+
+- key: openSource
+  name: Open source
+  description: Open source
+  exempt: false
+
+- key: governmentWideReuse
+  name: Government-wide reuse
+  description: Government-wide reuse
+  exempt: false
+
+- key: exemptByLaw
+  name: Exempt by law
+  description: The sharing of the source code is restricted by law or regulation, including—but not limited to—patent or intellectual property law, the Export Asset Regulations, the International Traffic in Arms Regulation, and the Federal laws and regulations governing classified information.
+  exempt: true
+
+- key: exemptByNationalSecurity
+  name: Exempt by national security
+  description: The sharing of the source code would create an identifiable risk to the detriment of national security, confidentiality of Government information, or individual privacy.
+  exempt: true
+
+- key: exemptByAgencySystem
+  name: Exempt by agency system
+  description: The sharing of the source code would create an identifiable risk to the stability, security, or integrity of the agency’s systems or personnel.
+  exempt: true
+
+- key: exemptByAgencyMission
+  name: Exempt by agency mission
+  description: The sharing of the source code would create an identifiable risk to agency mission, programs, or operations.
+  exempt: true
+
+- key: exemptByCIO
+  name: Exempt by CIO
+  description: The CIO believes it is in the national interest to exempt sharing the source code.
+  exempt: true

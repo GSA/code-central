@@ -8,6 +8,7 @@ const router = express.Router()
 const productController = require('./controllers/product_controller')
 const tagController = require('./controllers/tag_controller')
 const licenseController = require('./controllers/license_controller')
+const usageController = require('./controllers/usage_controller')
 
 router.get('/products', productController.index)
 router.get('/products/:id', productController.show)
@@ -27,6 +28,9 @@ router.post('/products/:productId/licenses', licenseController.create)
 router.put('/products/:productId/licenses/:id', licenseController.update)
 router.put('/products/:productId/licenses', licenseController.replace)
 router.delete('/products/:productId/licenses/:id', licenseController.destroy)
+
+router.get('/usages', usageController.index)
+router.get('/usages/:key', usageController.show)
 
 app.use(bodyParser.json())
 app.use('/api', router)
