@@ -28,12 +28,19 @@ module.exports = {
   },
 
   create: (req, res) => {
+    const tagList = req.body.tags || []
+    const tagObjects = tagList.map(t => {
+      return { name: t }
+    })
     Product
       .create({
         name: req.body.name,
         repository: req.body.repository,
         description: req.body.description,
-        laborHours: req.body.laborHours
+        laborHours: req.body.laborHours,
+        tags: tagObjects
+      }, {
+        include: [{ model: Tag, as: 'tags' }]
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(500).send("Server error"))
